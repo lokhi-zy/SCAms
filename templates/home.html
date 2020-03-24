@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>权重模型预测系统</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+    <script src="{{ url_for('static', filename='jquery.js') }}"></script>
+    <script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
+</head>
+<body style="background:url('../static/bgtwo.jpg')"center no-repeat; >
+<nav class="navbar navbar-default" style="margin-bottom:100px;">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="{{ url_for('systems') }}">系统介绍</a></li>
+        <li><a href="{{ url_for('introduce') }}">使用说明</a></li>
+        <li><a href="{{ url_for('model') }}">训练模型</a></li>
+        <li><a href="{{ url_for('index') }}">样例预测</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<div class="container">
+    {% block content %}{% endblock %}
+</div>
+
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container">
+    <h4><string>© Designed by ZY</string></h4>
+  </div>
+</nav>
+</body>
+</html>

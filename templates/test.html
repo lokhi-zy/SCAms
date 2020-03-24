@@ -1,0 +1,163 @@
+{% extends "home.html" %}
+
+{% block title %}test{% endblock %}
+
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-4">
+        <font size="6"><b style="color:#FFFFFF"  >选择测试数据</b> </font>
+    </div>
+
+    <div class="col-md-3 col-md-offset-1">
+        <font size="6"><b style="color:#FFFFFF"  >选择测试模型</b> </font>
+    </div>
+
+    <div class="col-md-3 col-md-offset-1">
+        <font size="6"><b style="color:#FFFFFF"  >选择规范化文件</b> </font>
+    </div>
+</div>
+
+<br>
+<div class="row">
+    <form method="post" action="/judge" enctype="multipart/form-data">
+
+        <div class="col-md-3">
+            <div class="form-group">
+               
+                <input type="file"  class="form-control input-lg" placeholder="选择样例" name="examplefile"></input>
+
+            </div>
+        </div>
+
+        <div class="col-md-3 col-md-offset-2">
+            <div class="form-group">
+               
+
+                <select style="width:190px;height:45px" name = "modelname">
+
+                    {% for model in modelfile %}
+                        <option value={{model}}>{{model}}</option>
+                    {%endfor%}
+                </select>
+                    
+            </div>
+        </div>
+
+        <div class="col-md-3 col-md-offset-1">
+
+
+           <div class="form-group">
+               
+
+                <select style="width:280px;height:45px" name = "standname">
+
+                    {% for standard in standfile %}
+                        <option value={{standard}}>{{standard}}</option>
+                    {%endfor%}
+                </select>
+                    
+            </div>
+        </div>        
+        <br>
+
+        <br>
+        <br>
+        <br>
+
+
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <div class="form-group">
+            
+                    <button class="btn btn-lg btn-block" type="submit" style="background-color:#97CBFF;"  >开始诊断</button>
+                
+                </div>            
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+
+    </form>
+
+<br>
+</div>
+<br>
+<br>
+<br>
+
+    {% if result %}
+
+        {% if result == 2 %}
+
+
+        <div class="row">
+            <div class="col-md-6">
+
+                <font size="6"><b style="color:#FFFFFF"  >阳性概率:</b> </font>
+                <font size="5"><b class="well well-lg" style="width:120px;" style="color:#2F0000" >{{Accuracy}}%</b> </font>        
+            </div>
+
+
+            <div class="col-md-6">
+
+               <font size="6"><b style="color:#FFFFFF"  >阴性概率:</b> </font>
+                <font size="5"><b class="well well-lg" style="width:120px;" style="color:#2F0000" >{{mistake}}%</b> </font>    
+            </div>
+        </div>
+        {% else %}
+
+        <div class="row">
+            <div class="col-md-6">
+
+                <font size="6"><b style="color:#FFFFFF"  >阳性概率:</b> </font>
+                <font size="5"><b class="well well-lg" style="width:120px;" style="color:#2F0000" >{{mistake}}%</b> </font>        
+            </div>
+
+
+            <div class="col-md-6">
+
+               <font size="6"><b style="color:#FFFFFF"  >阴性概率:</b> </font>
+                <font size="5"><b class="well well-lg" style="width:120px;" style="color:#2F0000" >{{Accuracy}}%</b> </font>    
+            </div>
+        </div>
+
+
+        {% endif %}
+
+
+    {% else %}
+
+        <div class="row">
+            <div class="col-md-5 col-md-offset-1">
+
+                <font size="6"><b style="color:#FFFFFF"  >阳性概率:</b> </font>
+                <font size="5"><b class="well well-lg" style="width:120px;" style="color:#2F0000" >&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</b> </font>        
+            </div>
+
+
+            <div class="col-md-5 col-md-offset-1">
+
+               <font size="6"><b style="color:#FFFFFF"  >阴性概率:</b> </font>
+                <font size="5"><b class="well well-lg" style="width:120px;" style="color:#2F0000" >&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</b> </font>    
+            </div>
+        </div>
+
+    {% endif %}
+
+    <br> <br>
+        <div >
+            <ul>
+                <h4 style="color: 	#BEBEBE">
+                    <li >测试数据为要进行判断的个体特征值文件（1名）</li>
+                    <br>
+                    <li>模型文件为通过训练数据所得的预测模型集合</li>
+                    <br>
+                    <li>规范化文件为与该测试数据同类型的训练数据所采用的规范化方式</li>
+                </h4>
+            </ul>
+        </div>
+
+
+{% endblock %}

@@ -1,0 +1,93 @@
+{% extends "home.html" %}
+
+
+{% block content %}
+
+
+<div class="row">
+ 
+
+    
+    <form method="post" action="/loaddata" enctype="multipart/form-data">
+           
+        <div class="col-md-3"> 
+            <div class="form-group">
+               
+                <input type="file"  class="form-control input-lg" placeholder="未选择文件" name="datafile">
+            </div>
+            <br>
+
+            <div class="form-group">
+               
+                <input type="text"  class="form-control input-lg" placeholder="迭代次数" name="generation">
+            </div>
+             <br>
+            <div class="form-group">
+               
+                <input type="text"  class="form-control input-lg" placeholder="模型另存为" name="modelname">
+            </div>
+
+        </div>
+
+        <div class="col-md-3 col-md-offset-1">
+
+            <br>
+            <br>
+            <br>
+           <div class="form-group">
+            
+                <button class="btn btn-lg btn-block" type="submit" style="background-color:#97CBFF;"  >开始训练</button>
+                
+            </div>
+
+        </div>
+    </form>
+        <div class="col-md-4 col-md-offset-1 ">
+        {% if Accuracy %}
+        <font size="6"><b style="color:#FFFFFF"  >模型准确率:</b> </font>
+
+        <font size="5"><b class="well well-lg" style="width:120px;" style="color:#2F0000" >{{Accuracy}}%</b> </font>
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <font size="5" style="color:#FFFFFF">训练完成，模型已保存为<b style="color:#FFFFFF">{{modelpath}}</b> </font>
+        {% else %}
+
+        <font size="6"><b style="color:#FFFFFF"  >模型准确率:</b> </font>
+
+        <font size="5"><b class="well well-lg" style="width:120px;" style="color:#2F0000" >&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</b> </font>
+
+        {% endif %}
+    </div>
+</div>
+        <br>
+        <br>
+        <br>
+        <div class="progress">
+            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                
+            </div>
+        </div>
+
+        
+     
+        <div >
+            <ul>
+                <h4 style="color: 	#BEBEBE">
+                    <li >请保证文件最后一位属性为类型值，值为1或2;</li>
+                    <br>
+                    <li>请尽量采用特征值间联系性较弱的数据进行训练;</li>
+                    <br>
+                    <li>训练完成后的权重数据将保存在model文件夹下;</li>
+                    <br>
+                    <li>初始迭代次数建议设为200。</li>
+                </h4>
+            </ul>
+        </div>
+{% endblock %}
+
+
+
