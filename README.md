@@ -8,7 +8,7 @@ that uses the SCA algorithm to optimize the weight model built on the training d
 ## Features
 
 * Apply to data with weak connection between eigenvalues
-* Can train different numbers of times on different data and compare models
+* Train different numbers of times on different data and compare models
 
 
 ## Build and run
@@ -19,11 +19,13 @@ that uses the SCA algorithm to optimize the weight model built on the training d
 * bootstarp
 
 
+### Run
 
+Run from web_test.py file
 
 ### model
 
-Select the data to be trained. The model file will be saved in the model folder and the corresponding normalized file will be generated.
+Select the data to be trained. The model file will be saved in the model folder and the corresponding normalized file will be generated in /standard/.
 
 
 ### test
