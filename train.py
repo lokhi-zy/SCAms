@@ -48,11 +48,18 @@ def SCA(generation,filename):
     data1 = (data - data.mean())/data.std() #零-均值规范化
     
     train_ar = np.array(data1)
+    #train_ar.dtype = 'float64'
+
+
     status = np.shape(train_ar)[1]
     status = status - 1
     mean = data.mean()
     std = data.std()
     mest = np.zeros((2,status))
+
+
+
+                
 
     for i in range(0,status):
         mest[0][i] = mean[i]
@@ -90,17 +97,13 @@ def SCA(generation,filename):
     weight_temp = weight_origin
 
     for FEs in range(T): 
-        a1 = 5
+        a1 = 10
 
-        if FEs < 200:
-            r1= a1-2 * a1 /(pow(math.e,FEs/T)); # r1 decreases linearly from a to 0
-        else:
-            r1= a1-FEs*( (a1) / T );
+        # if FEs < 500:
+        #     r1= a1-2 * a1 /(pow(math.e,FEs/T)); # r1 decreases linearly from a to 0
+        # else:
+        r1= a1-FEs*( (a1) / T );
 
-        # r1 = a1 - (FEs*(a1/T))
-        # r2 = random.uniform(0,3.1415926)
-        # r3 = random.uniform(0, 2)
-        # r4 = random.random()  
         for i in range(0,10):
             
             # if i != best:
@@ -131,20 +134,7 @@ def SCA(generation,filename):
                 population_best[i] = weight_temp[best][i]
                 population_best[status] = fitness[best]
 
-        # for i in range(0,23):
-        #     weight_temp[9] = weight_temp[best] 
 
-
-        # if fitness[best] > 0.80:
-        #     a = 2
-        # if fitness[best] > 0.70:
-        #     a = 3
-        # if fitness[best] > 0.60:
-        #     a = 4
-
-        # for m in range(0,23):
-
-        #     weight_temp[9][m] = weight_temp[best][m]
 
         print( population_best[status] , best )
         # print(population_best)
