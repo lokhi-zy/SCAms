@@ -8,6 +8,9 @@ import pandas as pd
 import os 
 from math import exp
 import math
+import sklearn  
+from sklearn import svm  
+from sklearn.model_selection import train_test_split
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 def fit( weight_temp, train_ar,status):
@@ -46,9 +49,12 @@ def SCA(generation,filename):
     datafile = path #参数初始化
     data = pd.read_excel(datafile, header = None) #读取数据
     data1 = (data - data.mean())/data.std() #零-均值规范化
-    
+
     train_ar = np.array(data1)
     #train_ar.dtype = 'float64'
+
+    train_ar1 = train_ar
+
 
 
     status = np.shape(train_ar)[1]
@@ -58,9 +64,21 @@ def SCA(generation,filename):
     mest = np.zeros((2,status))
 
 
+##支持向量机
 
-                
+    # x,y=np.split(train_ar1,indices_or_sections=(status,),axis=1) #x为数据，y为标签  
+    # train_data,test_data,train_label,test_label =sklearn.model_selection.train_test_split(x,y, random_state=1, train_size=0.8,test_size=0.2)  
 
+    # train_label.dtype = 'int64'
+    # test_label.dtype = 'int64'
+
+    # classifier=svm.SVC(C=2,kernel='rbf',gamma=10,decision_function_shape='ovo')
+
+    # classifier.fit(train_data,train_label.ravel())
+
+    # print("训练集：",classifier.score(train_data,train_label)) 
+    # print("测试集：",classifier.score(test_data,test_label)) 
+##
     for i in range(0,status):
         mest[0][i] = mean[i]
 
@@ -97,12 +115,12 @@ def SCA(generation,filename):
     weight_temp = weight_origin
 
     for FEs in range(T): 
-        a1 = 10
+        a1 = 5
 
-        # if FEs < 500:
-        #     r1= a1-2 * a1 /(pow(math.e,FEs/T)); # r1 decreases linearly from a to 0
-        # else:
-        r1= a1-FEs*( (a1) / T );
+        if FEs < 100:
+            r1= a1-2 * a1 /(pow(math.e,FEs/T)); # r1 decreases linearly from a to 0
+        else:
+            r1= a1-FEs*( (a1) / T );
 
         for i in range(0,10):
             

@@ -1,13 +1,13 @@
 {% extends "bootstrap/base.html" %}
 
-{% block title %}权重模型预测系统{% endblock %}
+{% block title %}基于SCA权重模型的疾病预测系统{% endblock %}
 
 {% block content %}
 <body background={{url_for('static', filename='bgone.jpg')}}  >
     <div class="container" style="width:400px; margin-top:100px;">
 
 
-        <h1><font  style="color:#FFFFFF"><b>SCA权重模型预测系统 <b> </font></h1>
+        <h1><font  style="color:#FFFFFF"><b><nobr>基于SCA权重模型的疾病预测系统</nobr> <b> </font></h1>
 
         <h2 style="color:red">
             {% if message %} {{message}} {% endif %}

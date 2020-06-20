@@ -4,6 +4,7 @@ import os
 import test
 import train
 import numpy as np
+import system
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 app = Flask(__name__)
@@ -15,6 +16,9 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
+
+
+        system.login(username,password)
         if username == 'admin' and password == 'admin':
             return redirect("/systems")
         else:
