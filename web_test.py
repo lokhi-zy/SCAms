@@ -18,8 +18,9 @@ def login():
         password = request.form['password']
 
 
-        system.login(username,password)
-        if username == 'admin' and password == 'admin':
+        result = system.login(username,password)
+        
+        if result == 1:
             return redirect("/systems")
         else:
             message = "Login Failed"
@@ -38,6 +39,12 @@ def index():
 
     return render_template("test.html" , modelfile = modelfile , standfile =standfile)
    
+
+@app.route("/signup" , methods=["POST"])
+def signup():
+    print(1)
+    return render_template("signup.html")
+
 
 @app.route("/systems")
 def systems():
