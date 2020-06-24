@@ -18,7 +18,8 @@ def login(username,password):
     userinfo = cursor.fetchone()
     if userinfo:
         result = 1
-    print(result)
     # 关闭数据库连接
+    else:
+        result = 0
     db.close()
     return result

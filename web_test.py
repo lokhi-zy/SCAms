@@ -40,10 +40,10 @@ def index():
     return render_template("test.html" , modelfile = modelfile , standfile =standfile)
    
 
-@app.route("/signup" , methods=["POST"])
+@app.route("/signup")
 def signup():
     print(1)
-    return render_template("signup.html")
+    return render_template("register.html")
 
 
 @app.route("/systems")
