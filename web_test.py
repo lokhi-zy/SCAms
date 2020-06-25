@@ -40,10 +40,26 @@ def index():
     return render_template("test.html" , modelfile = modelfile , standfile =standfile)
    
 
-@app.route("/signup")
+@app.route("/register" , methods = ["GET", "POST"])
 def signup():
-    print(1)
-    return render_template("register.html")
+    if request.method == 'POST':
+        print(1)
+        userinfo = ['0','0','0']
+        userid = request.form['userid']
+        username = request.form['username']
+        password = request.form['password']
+        userinfo[0] = userid
+        userinfo[1] = username
+        userinfo[2] = password
+        print(userinfo)
+        result = system.register(userinfo)
+        if result == 1:
+            return render_template("index2.html")    
+        else:
+            message = "Register Failed"
+            return render_template('register.html', message = message)
+    else:
+        return render_template("register.html")
 
 
 @app.route("/systems")
